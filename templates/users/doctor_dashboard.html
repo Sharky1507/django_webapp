@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Doctor Dashboard{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card mt-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h2>Doctor Dashboard</h2>
+                <a href="{% url 'logout' %}" class="btn btn-outline-light">Logout</a>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 text-center mb-4">
+                        {% if user.profile_picture %}
+                            <img src="{{ user.profile_picture.url }}" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="max-height: 200px;">
+                        {% else %}
+                            <div class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center mx-auto mb-3" style="width: 200px; height: 200px;">
+                                <h1>{{ user.first_name.0 }}{{ user.last_name.0 }}</h1>
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <h3>Welcome, Dr. {{ user.first_name }} {{ user.last_name }}</h3>
+                        <p class="text-muted">Doctor Profile</p>
+                        
+                        <div class="list-group mt-3">
+                            <div class="list-group-item">
+                                <strong>Username:</strong> {{ user.username }}
+                            </div>
+                            <div class="list-group-item">
+                                <strong>Email:</strong> {{ user.email }}
+                            </div>
+                            <div class="list-group-item">
+                                <strong>Address:</strong> {{ user.address_line1 }}, {{ user.city }}, {{ user.state }} - {{ user.pincode }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
